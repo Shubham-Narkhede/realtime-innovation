@@ -8,7 +8,9 @@ import 'package:realtime_innovation/widgets/WidgetText.dart';
 import '../cubit/CubitSqFliteDatabse.dart';
 import '../helper/HelperNavigation.dart';
 import '../widgets/WidgetAppBar.dart';
-import 'ScreenAddEmployee.dart';
+import 'ScreenAddUpdateEmployee.dart';
+
+// ScreenEmployeeList this screen is created to show the all employee list
 
 class ScreenEmployeeList extends StatefulWidget {
   @override
@@ -19,6 +21,8 @@ class _ScreenEmployeeListState extends State<ScreenEmployeeList> {
   @override
   void initState() {
     super.initState();
+
+    /// here we have initialize the database
     BlocProvider.of<SqFlitDatabaseCubit>(context).init();
   }
 
@@ -31,6 +35,8 @@ class _ScreenEmployeeListState extends State<ScreenEmployeeList> {
       ),
       body: BlocConsumer<SqFlitDatabaseCubit, SqFliteDatabaseState>(
           listener: (_, state) {
+        /// if we delete any user then we are showing the snakbar at the below of screen
+        /// so we have added below function
         if (state is StateDeleted) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Row(
@@ -47,11 +53,17 @@ class _ScreenEmployeeListState extends State<ScreenEmployeeList> {
           )));
         }
       }, builder: (_, state) {
+        /// if state is loading then we show loader
         if (state is StateLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is StateSuccess) {
+        } else
+
+        /// if state is success then we show the data on the basis of response
+        /// if data is empty then we are showing no user data available
+        /// else we show the listview of user info
+        if (state is StateSuccess) {
           return state.listUser.isEmpty
               ? Center(
                   child: Image.asset("assets/noUser.png"),
@@ -59,7 +71,10 @@ class _ScreenEmployeeListState extends State<ScreenEmployeeList> {
               : ScreenUserList(
                   listUser: state.listUser,
                 );
-        } else if (state is StateError) {
+        } else
+
+        /// if we get any error then we are showing the error directly on the ui
+        if (state is StateError) {
           return widgetText(text: state.error.toString());
         }
         return Container();
@@ -69,7 +84,7 @@ class _ScreenEmployeeListState extends State<ScreenEmployeeList> {
         child: const Icon(Icons.add),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         onPressed: () {
-          HelperNavigation.instance.navigatePush(context, ScreenAddEmployee());
+          HelperNavigation.instance.navigatePush(context, ScreenAddUpdateEmployee());
         },
       ),
     );

@@ -7,7 +7,6 @@ import 'package:realtime_innovation/screens/ScreenEmployeeList.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await ScreenUtil.ensureScreenSize();
   runApp(const MainApp());
 }
@@ -20,6 +19,7 @@ class MainApp extends StatelessWidget {
     return ScreenUtilInit(
         minTextAdapt: true,
         builder: (context, child) {
+          /// here we have called the bloc instance and assign the local database instance
           return BlocProvider<SqFlitDatabaseCubit>(
               create: (BuildContext context) => SqFlitDatabaseCubit(UserRepo()),
               child: MaterialApp(

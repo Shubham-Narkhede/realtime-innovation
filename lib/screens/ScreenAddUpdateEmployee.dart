@@ -12,14 +12,18 @@ import '../widgets/WidgetAssetImage.dart';
 import '../widgets/WidgetRowButton.dart';
 import '../widgets/WidgetUserRoles.dart';
 
-class ScreenAddEmployee extends StatefulWidget {
+//ScreenAddUpdateEmployee this screen is created for add or edit the user info
+/// we manage both operation on the same screen
+class ScreenAddUpdateEmployee extends StatefulWidget {
+  /// here we are getting the user info
   ModelUser? user;
-  ScreenAddEmployee({this.user});
+  ScreenAddUpdateEmployee({this.user});
   @override
-  _ScreenAddEmployeeState createState() => _ScreenAddEmployeeState();
+  _ScreenAddUpdateEmployeeState createState() =>
+      _ScreenAddUpdateEmployeeState();
 }
 
-class _ScreenAddEmployeeState extends State<ScreenAddEmployee> {
+class _ScreenAddUpdateEmployeeState extends State<ScreenAddUpdateEmployee> {
   TextEditingController controllerEmpName = TextEditingController();
   TextEditingController controllerRole = TextEditingController();
   TextEditingController controllerFromDate = TextEditingController();
@@ -31,6 +35,7 @@ class _ScreenAddEmployeeState extends State<ScreenAddEmployee> {
   void initState() {
     super.initState();
 
+    /// if user info is not null then we are assigning all the user info on the text fields
     if (widget.user != null) {
       assignInfo();
     }
@@ -41,6 +46,7 @@ class _ScreenAddEmployeeState extends State<ScreenAddEmployee> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: WidgetAppBar(
+        /// we are changing the name of app bar on the basis of user info
         title: " ${widget.user != null ? "Edit" : "Add"} Employee Details",
       ),
       body: Form(
@@ -131,6 +137,8 @@ class _ScreenAddEmployeeState extends State<ScreenAddEmployee> {
               ),
               WidgetRowButton(
                 onTapSave: () {
+                  /// here we have validate the textfield
+                  /// they are null or not null
                   if (key.currentState!.validate()) {
                     addUpdateEmployee(ModelUser(
                         id: widget.user != null ? widget.user!.id : null,
@@ -158,6 +166,8 @@ class _ScreenAddEmployeeState extends State<ScreenAddEmployee> {
 
   addUpdateEmployee(ModelUser user) {
     SqFlitDatabaseCubit cubit = SqFlitDatabaseCubit.get(context);
+    // if user info is not null then we are calling the update user method
+    // else we called the add user method
     if (widget.user != null) {
       cubit.updateUserInfo(user);
     } else {

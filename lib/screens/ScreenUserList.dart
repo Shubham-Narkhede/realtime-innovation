@@ -8,7 +8,7 @@ import '../cubit/CubitSqFliteDatabse.dart';
 import '../models/ModelUser.dart';
 import '../widgets/WidgetSlideChild.dart';
 import '../widgets/WidgetText.dart';
-import 'ScreenAddEmployee.dart';
+import 'ScreenAddUpdateEmployee.dart';
 
 class ScreenUserList extends StatefulWidget {
   List<ModelUser> listUser;
@@ -75,7 +75,7 @@ class _ScreenUserListState extends State<ScreenUserList> {
       onTap: () {
         HelperNavigation.instance.navigatePush(
             context,
-            ScreenAddEmployee(
+            ScreenAddUpdateEmployee(
               user: user,
             ));
       },

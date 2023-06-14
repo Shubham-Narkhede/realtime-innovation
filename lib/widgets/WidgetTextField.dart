@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
 import 'package:realtime_innovation/helper/HelperColor.dart';
-import 'package:realtime_innovation/helper/HelperFunction.dart';
 import 'package:realtime_innovation/helper/HelperNavigation.dart';
 
 import 'WidgetAssetImage.dart';
@@ -273,7 +271,6 @@ class _WidgetTextFormFieldState extends State<WidgetTextFormField> {
                 ? null
                 : (value) => widget.onChanged!(value),
             onEditingComplete: widget.onEditingComplete,
-            textCapitalization: textCapitalization(),
             keyboardType: keyBoardType(),
             textInputAction: TextInputAction.next,
             style: TextStyle(
@@ -414,22 +411,6 @@ class _WidgetTextFormFieldState extends State<WidgetTextFormField> {
         color: color,
       ),
     );
-  }
-
-  TextCapitalization textCapitalization() {
-    if (widget.enumTextInputType == EnumTextInputType.email) {
-      return TextCapitalization.none;
-    }
-
-    if (widget.enumTextInputType ==
-            EnumTextInputType.capitalLettersWithDigitsNoSpecialChars ||
-        widget.enumTextInputType ==
-            EnumTextInputType.capitalLettersWithDigitsWithSpecialChars ||
-        widget.enumTextInputType == EnumTextInputType.panCardNumber ||
-        widget.enumTextInputType == EnumTextInputType.vehicleNumber) {
-      return TextCapitalization.characters;
-    }
-    return TextCapitalization.words;
   }
 
   TextInputType keyBoardType() {
