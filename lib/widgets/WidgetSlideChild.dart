@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../helper/HelperColor.dart';
 
+/// this is slidable widget. If we wrap our widget with this widget then we can slide our widget
 class WidgetSlideChild extends StatefulWidget {
   final Widget child;
   final List<Widget> menuItems;

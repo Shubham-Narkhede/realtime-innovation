@@ -26,6 +26,7 @@ class WidgetButtonController {
   }
 }
 
+/// here we have created the common widget for button
 class WidgetButton extends StatefulWidget {
   final IconData? frontIcon;
   final IconData? backIcon;

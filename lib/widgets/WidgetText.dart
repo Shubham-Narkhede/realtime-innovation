@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/// this is common widget for the text
 Widget widgetText(
     {required String text,
     final bool isCentered = false,

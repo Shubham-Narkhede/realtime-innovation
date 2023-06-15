@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'WidgetText.dart';
 
+/// this is common appbar we have created
 class WidgetAppBar extends StatelessWidget implements PreferredSizeWidget {
   String title;
   bool showSpIcon;

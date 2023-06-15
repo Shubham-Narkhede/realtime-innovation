@@ -5,6 +5,7 @@ import 'package:realtime_innovation/widgets/WidgetText.dart';
 
 import '../helper/HelperNavigation.dart';
 
+/// this widget is created to show all the user roles 
 class ModalBottomSheet {
   static void moreModalBottomSheet(context, Function(String) callback) {
     Size size = MediaQuery.of(context).size;

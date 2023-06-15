@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// this is common widget we have created to show the asset image
 class WidgetAssetImage extends StatelessWidget {
   double? width;
   double? height;

@@ -10,6 +10,10 @@ import '../widgets/WidgetSlideChild.dart';
 import '../widgets/WidgetText.dart';
 import 'ScreenAddUpdateEmployee.dart';
 
+// ScreenUserList this screen we are using for showing the listview of users
+// basically in this screen we are showing two different type of user
+// 1) Current Employee
+// 2) Previous employee
 class ScreenUserList extends StatefulWidget {
   List<ModelUser> listUser;
   ScreenUserList({required this.listUser});
@@ -24,6 +28,7 @@ class _ScreenUserListState extends State<ScreenUserList> {
       color: Colors.white,
       child: ListView(
         children: [
+          /// is user don't added there to date it means this employee is currentemp
           if (widget.listUser
               .where((element) => element.toDate.isEmpty)
               .toList()
@@ -37,6 +42,8 @@ class _ScreenUserListState extends State<ScreenUserList> {
                     .toList(),
               ],
             ),
+
+          /// is user added there to date it means this employee is previous emp
           if (widget.listUser
               .where((element) => element.toDate.isNotEmpty)
               .toList()
@@ -56,6 +63,7 @@ class _ScreenUserListState extends State<ScreenUserList> {
     );
   }
 
+// this widget is created to show the title of list
   Widget widgetHeader(String title) {
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -70,9 +78,11 @@ class _ScreenUserListState extends State<ScreenUserList> {
     );
   }
 
+  // this is the list of item
   Widget widgetListItem(ModelUser user) {
     return InkWell(
       onTap: () {
+        // here we are navigating to the next page for update the user info
         HelperNavigation.instance.navigatePush(
             context,
             ScreenAddUpdateEmployee(
@@ -83,6 +93,7 @@ class _ScreenUserListState extends State<ScreenUserList> {
         menuItems: [
           IconButton(
               onPressed: () {
+                // this method is created to delete the emp
                 deleteUser(user.id!);
               },
               icon: WidgetAssetImage(imagePath: "delete"))

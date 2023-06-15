@@ -6,6 +6,8 @@ import '../helper/HelperColor.dart';
 import 'WidgetButton.dart';
 import 'WidgetText.dart';
 
+/// this widget is bottom of two buttons
+/// it contains two button which we are showing the bottom and right side
 class WidgetRowButton extends StatelessWidget {
   VoidCallback onTapSave;
 
