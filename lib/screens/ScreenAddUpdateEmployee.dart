@@ -24,12 +24,12 @@ class ScreenAddUpdateEmployee extends StatefulWidget {
 }
 
 class _ScreenAddUpdateEmployeeState extends State<ScreenAddUpdateEmployee> {
+  final key = GlobalKey<FormState>();
+
   TextEditingController controllerEmpName = TextEditingController();
   TextEditingController controllerRole = TextEditingController();
   TextEditingController controllerFromDate = TextEditingController();
   TextEditingController controllerToDate = TextEditingController();
-
-  final key = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -48,6 +48,14 @@ class _ScreenAddUpdateEmployeeState extends State<ScreenAddUpdateEmployee> {
       appBar: WidgetAppBar(
         /// we are changing the name of app bar on the basis of user info
         title: " ${widget.user != null ? "Edit" : "Add"} Employee Details",
+        listAction: [
+          if (widget.user != null)
+            IconButton(
+                onPressed: () {
+                  deleteUser();
+                },
+                icon: WidgetAssetImage(imagePath: "delete"))
+        ],
       ),
       body: Form(
         key: key,
@@ -157,6 +165,7 @@ class _ScreenAddUpdateEmployeeState extends State<ScreenAddUpdateEmployee> {
     );
   }
 
+  /// basically this method is created for assign the values to the text editing controller
   assignInfo() {
     controllerEmpName.text = widget.user!.userName;
     controllerRole.text = widget.user!.userRole;
@@ -173,6 +182,13 @@ class _ScreenAddUpdateEmployeeState extends State<ScreenAddUpdateEmployee> {
     } else {
       cubit.addUser(user);
     }
+    HelperNavigation.instance.navigatePop(context);
+  }
+
+  /// this method is created for delete the employee
+  deleteUser() {
+    SqFlitDatabaseCubit cubit = SqFlitDatabaseCubit.get(context);
+    cubit.deleteUser(widget.user!.id!);
     HelperNavigation.instance.navigatePop(context);
   }
 }

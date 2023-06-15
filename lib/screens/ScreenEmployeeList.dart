@@ -44,11 +44,14 @@ class _ScreenEmployeeListState extends State<ScreenEmployeeList> {
             children: [
               widgetText(
                   text: "Employee Data has been deleted",
-                  textStyle: textStyle(fontSize: 15.h)),
+                  textStyle:
+                      textStyle(fontSize: 15.h, fontWeight: FontWeight.w400)),
               widgetText(
                   text: "UNDO",
-                  textStyle:
-                      textStyle(textColor: HelperColor.instance.colorPrimary))
+                  textStyle: textStyle(
+                      textColor: HelperColor.instance.colorPrimary,
+                      fontSize: 15.h,
+                      fontWeight: FontWeight.w400))
             ],
           )));
         }
@@ -84,7 +87,8 @@ class _ScreenEmployeeListState extends State<ScreenEmployeeList> {
         child: const Icon(Icons.add),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         onPressed: () {
-          HelperNavigation.instance.navigatePush(context, ScreenAddUpdateEmployee());
+          HelperNavigation.instance
+              .navigatePush(context, ScreenAddUpdateEmployee());
         },
       ),
     );
