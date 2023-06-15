@@ -10,15 +10,19 @@ import 'WidgetText.dart';
 /// it contains two button which we are showing the bottom and right side
 class WidgetRowButton extends StatelessWidget {
   VoidCallback onTapSave;
+  bool showBorder;
 
-  WidgetRowButton({required this.onTapSave});
+  WidgetRowButton({required this.onTapSave, this.showBorder = true});
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           border: Border(
-              top: BorderSide(color: HelperColor.instance.colorBackground))),
+              top: BorderSide(
+                  color: showBorder
+                      ? HelperColor.instance.colorBackground
+                      : Colors.transparent))),
       margin: EdgeInsets.only(bottom: 12.h),
       padding: EdgeInsets.only(
         top: 12.h,

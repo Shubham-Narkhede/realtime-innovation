@@ -118,6 +118,10 @@ class WidgetCustomCalendarState extends State<WidgetCustomCalendar> {
             }),
           ),
           Container(
+              decoration: BoxDecoration(
+                  border: Border(
+                      top: BorderSide(
+                          color: HelperColor.instance.colorBackground))),
               padding: EdgeInsets.only(right: 16.w, left: 16.w),
               child: Row(
                 children: [
@@ -140,7 +144,9 @@ class WidgetCustomCalendarState extends State<WidgetCustomCalendar> {
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w400))
                   ])),
-                  Expanded(child: WidgetRowButton(
+                  Expanded(
+                      child: WidgetRowButton(
+                    showBorder: false,
                     onTapSave: () {
                       if (selectedDate != null) {
                         widget.selectedDate(selectedDate!);
